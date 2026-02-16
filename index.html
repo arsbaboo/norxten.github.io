@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Norxten | Coming Soon</title>
     <style>
-        /* Modern Reset */
         * {
             margin: 0;
             padding: 0;
@@ -23,43 +22,53 @@
             align-items: center;
             text-align: center;
             padding: 40px 20px;
+            overflow: hidden;
         }
 
-        /* Top Section: Logo and Tagline */
+        /* Container to hold Logo and Tagline */
         .header-container {
-            margin-top: auto; /* Pushes content towards center-top */
-            margin-bottom: 20px;
+            margin-top: auto;
+            position: relative; /* Essential for tagline positioning */
+            padding-bottom: 40px; /* Creates space for the tagline to overlap */
+            animation: fadeIn 1.2s ease-out forwards;
         }
 
         .logo {
-            max-width: 600px;
+            max-width: 320px;
             height: auto;
             display: block;
-            margin: 0 auto 15px auto;
+            margin: 0 auto;
         }
 
         .tagline {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 400;
-            color: #555;
-            letter-spacing: 0.5px;
-            /* This moves the text up towards the logo */
-            margin-top: -20px; 
-            position: relative;
-            z-index: 1;
+            color: #444;
+            letter-spacing: 1px;
+            
+            /* The Movement Logic */
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 35px; /* Increase this number to move the tagline HIGHER */
+            
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
         }
 
         /* Middle Section: Coming Soon */
         .status-container {
-            margin-top: 5vh; /* Places it roughly 1/3 from the bottom */
+            margin-top: 5vh;
             margin-bottom: auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards;
         }
 
         .coming-soon {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 700;
-            letter-spacing: 4px;
-            color: #888;
+            letter-spacing: 5px;
+            color: #aaa;
             text-transform: uppercase;
         }
 
@@ -68,25 +77,37 @@
             width: 100%;
             font-size: 0.85rem;
             color: #999;
-            border-top: 1px solid #eee;
             padding-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
         }
 
         footer a {
-            color: #1a1a1a;
+            color: #004d71; /* Matches the blue 'X' in your logo */
             text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.2s;
+            font-weight: 600;
         }
 
-        footer a:hover {
-            opacity: 0.7;
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
-        /* Mobile Adjustments */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 480px) {
-            .logo { max-width: 220px; }
-            .tagline { font-size: 1rem; }
+            .logo { max-width: 240px; }
+            .tagline { font-size: 0.9rem; bottom: 45px; }
         }
     </style>
 </head>
