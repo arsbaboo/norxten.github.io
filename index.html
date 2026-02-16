@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Norxten - Coming Soon</title>
+    <title>Norxten | Coming Soon</title>
     <style>
+        /* Modern Reset */
         * {
             margin: 0;
             padding: 0;
@@ -12,138 +13,93 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #f8f9fa;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            color: #1a1a1a;
-            padding: 40px 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
-            width: 100%;
-            max-width: 1000px;
-            position: relative;
-            z-index: 1;
-            padding-top: 80px;
+            padding: 40px 20px;
         }
 
-        .logo-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin-bottom: 0;
+        /* Top Section: Logo and Tagline */
+        .header-container {
+            margin-top: auto; /* Pushes content towards center-top */
+            margin-bottom: 20px;
         }
 
         .logo {
-            max-width: 600px;
-            width: 100%;
+            max-width: 300px;
             height: auto;
-            margin-bottom: 25px;
+            display: block;
+            margin: 0 auto 15px auto;
         }
 
         .tagline {
-            font-size: 26px;
-            font-weight: 300;
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #555;
             letter-spacing: 0.5px;
-            color: #4b5563;
-            margin: 0;
+        }
+
+        /* Middle Section: Coming Soon */
+        .status-container {
+            margin-top: 10vh; /* Places it roughly 1/3 from the bottom */
+            margin-bottom: auto;
         }
 
         .coming-soon {
-            font-size: 64px;
+            font-size: 0.9rem;
             font-weight: 700;
-            letter-spacing: 8px;
-            margin-top: auto;
-            padding-top: 120px;
-            padding-bottom: 60px;
-            color: #1a1a1a;
+            letter-spacing: 4px;
+            color: #888;
+            text-transform: uppercase;
         }
 
+        /* Bottom Section: Footer */
         footer {
-            text-align: center;
-            font-size: 15px;
-            padding: 20px;
-            opacity: 0.7;
-            position: relative;
-            z-index: 1;
-            color: #6b7280;
+            width: 100%;
+            font-size: 0.85rem;
+            color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
         }
 
         footer a {
-            color: #6b7280;
+            color: #1a1a1a;
             text-decoration: none;
-            transition: opacity 0.3s;
+            font-weight: 500;
+            transition: opacity 0.2s;
         }
 
         footer a:hover {
             opacity: 0.7;
         }
 
-        @media (max-width: 768px) {
-            .logo {
-                max-width: 400px;
-            }
-
-            .tagline {
-                font-size: 20px;
-            }
-
-            .coming-soon {
-                font-size: 40px;
-                letter-spacing: 4px;
-                padding-top: 80px;
-            }
-        }
-
+        /* Mobile Adjustments */
         @media (max-width: 480px) {
-            .logo {
-                max-width: 300px;
-            }
-
-            .tagline {
-                font-size: 16px;
-            }
-
-            .coming-soon {
-                font-size: 32px;
-                letter-spacing: 3px;
-            }
+            .logo { max-width: 220px; }
+            .tagline { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <div class="logo-section">
-            <img src="logo.png" alt="Norxten Logo" class="logo">
-            <p class="tagline">Building foundational technology platforms.</p>
-        </div>
-        <h1 class="coming-soon">COMING SOON...</h1>
+
+    <div class="header-container">
+        <img src="logo.png" alt="Norxten Logo" class="logo">
+        <p class="tagline">Building foundational technology platforms.</p>
     </div>
+
+    <div class="status-container">
+        <p class="coming-soon">COMING SOON...</p>
+    </div>
+
     <footer>
-        ©2026 Norxten | <a href="mailto:info@norxten.com">info@norxten.com</a>
+        <p>&copy; 2026 Norxten | <a href="mailto:info@norxten.com">info@norxten.com</a></p>
     </footer>
+
 </body>
 </html>
