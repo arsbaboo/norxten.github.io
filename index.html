@@ -1,77 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Norxten</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norxten - Coming Soon</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-* { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            color: #ffffff;
+            padding: 40px 20px;
+        }
 
-body{
-  margin:0;
-  background:#ffffff;
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
-  color:#111111;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-}
+        .content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 100%;
+            max-width: 800px;
+        }
 
-.wrap{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:20px;
-}
+        .logo {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+        }
 
-.logo{
-  max-width:700px;
-  width:95%;
-  margin:0;
-}
+        .tagline {
+            font-size: 24px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            margin-bottom: 60px;
+        }
 
-.tagline{
-  font-size:30px;
-  font-weight:600;
-  margin:0;
-  white-space:nowrap; /* Forces one line */
-}
+        .coming-soon {
+            font-size: 48px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            margin-top: auto;
+            padding-top: 80px;
+        }
 
-.coming{
-  font-size:44px;
-  font-weight:800;
-  letter-spacing:6px;
-  text-transform:uppercase;
-  margin-top:10px;
-}
+        footer {
+            text-align: center;
+            font-size: 14px;
+            padding: 20px;
+            opacity: 0.9;
+        }
 
-.footer{
-  position:fixed;
-  bottom:24px;
-  left:0;
-  right:0;
-  font-size:14px;
-  color:#999999;
-}
-</style>
+        footer a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .tagline {
+                font-size: 18px;
+            }
+
+            .coming-soon {
+                font-size: 32px;
+                letter-spacing: 2px;
+            }
+
+            .logo {
+                max-width: 200px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="wrap">
-    <img src="logo.png" alt="Norxten Logo" class="logo">
-    <div class="tagline">
-      Building foundational technology platforms.
+    <div class="content">
+        <img src="logo.png" alt="Norxten Logo" class="logo">
+        <p class="tagline">Building foundational technology platforms.</p>
+        <h1 class="coming-soon">COMING SOON...</h1>
     </div>
-    <div class="coming">
-      COMING SOON...
-    </div>
-  </div>
-
-  <div class="footer">
-    © 2026 Norxten | info@norxten.com
-  </div>
+    <footer>
+        ©2026 Norxten | <a href="mailto:info@norxten.com">info@norxten.com</a>
+    </footer>
 </body>
 </html>
