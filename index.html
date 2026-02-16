@@ -6,69 +6,67 @@
 <title>Norxten</title>
 
 <style>
-* {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+
+body{
+  margin:0;
+  background:#fff;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  color:#111;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
 }
 
-body {
-    margin: 0;
-    background: #ffffff;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    color: #111111;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+.wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:18px;
+  transform: translateY(-30px); /* pulls the whole block slightly up */
 }
 
-.logo {
-    max-width: 420px;
-    width: 80%;
-    margin-bottom: 30px;
+.logo{
+  max-width:420px;
+  width:80%;
+  margin:0;
 }
 
-.tagline {
-    font-size: 28px;
-    font-weight: 600;
-    line-height: 1.4;
-    margin-bottom: 40px;
+.tagline{
+  font-size:28px;
+  font-weight:600;
+  line-height:1.25;
+  margin:0;
 }
 
-.coming {
-    font-size: 40px;
-    font-weight: 700;
-    letter-spacing: 6px;
-    text-transform: uppercase;
-    color: #000000;
+.coming{
+  font-size:40px;
+  font-weight:800;
+  letter-spacing:6px;
+  text-transform:uppercase;
+  margin:10px 0 0 0;
 }
 
-.footer {
-    position: absolute;
-    bottom: 30px;
-    font-size: 14px;
-    color: #999999;
+.footer{
+  position:fixed;
+  bottom:24px;
+  left:0;
+  right:0;
+  font-size:14px;
+  color:#999;
 }
 </style>
 </head>
 
 <body>
+  <div class="wrap">
+    <img src="logo.png" alt="Norxten Logo" class="logo">
+    <div class="tagline">Building foundational<br>technology platforms.</div>
+    <div class="coming">COMING SOON...</div>
+  </div>
 
-<img src="logo.png" alt="Norxten Logo" class="logo">
-
-<div class="tagline">
-Building foundational<br>
-technology platforms.
-</div>
-
-<div class="coming">
-COMING SOON...
-</div>
-
-<div class="footer">
-© 2026 Norxten | info@norxten.com
-</div>
-
+  <div class="footer">© 2026 Norxten | info@norxten.com</div>
 </body>
 </html>
