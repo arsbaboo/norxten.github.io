@@ -13,13 +13,13 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #0a0e27;
+            background: #f8f9fa;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            color: #ffffff;
+            color: #1a1a1a;
             padding: 40px 20px;
             position: relative;
             overflow: hidden;
@@ -32,8 +32,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(29, 78, 216, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(147, 51, 234, 0.08) 0%, transparent 50%);
             pointer-events: none;
         }
 
@@ -50,19 +50,26 @@
             padding-top: 80px;
         }
 
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 0;
+        }
+
         .logo {
             max-width: 600px;
             width: 100%;
             height: auto;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .tagline {
             font-size: 26px;
             font-weight: 300;
             letter-spacing: 0.5px;
-            margin-bottom: 0;
-            color: #e5e7eb;
+            color: #4b5563;
+            margin: 0;
         }
 
         .coming-soon {
@@ -72,19 +79,21 @@
             margin-top: auto;
             padding-top: 120px;
             padding-bottom: 60px;
+            color: #1a1a1a;
         }
 
         footer {
             text-align: center;
             font-size: 15px;
             padding: 20px;
-            opacity: 0.8;
+            opacity: 0.7;
             position: relative;
             z-index: 1;
+            color: #6b7280;
         }
 
         footer a {
-            color: #ffffff;
+            color: #6b7280;
             text-decoration: none;
             transition: opacity 0.3s;
         }
@@ -127,8 +136,10 @@
 </head>
 <body>
     <div class="content">
-        <img src="logo.png" alt="Norxten Logo" class="logo">
-        <p class="tagline">Building foundational technology platforms.</p>
+        <div class="logo-section">
+            <img src="logo.png" alt="Norxten Logo" class="logo">
+            <p class="tagline">Building foundational technology platforms.</p>
+        </div>
         <h1 class="coming-soon">COMING SOON...</h1>
     </div>
     <footer>
