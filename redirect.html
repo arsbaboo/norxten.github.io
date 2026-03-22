@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Norxten | Opening App...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            overflow: hidden;
+        }
+        .header-container {
+            margin-top: auto;
+            position: relative;
+            padding-bottom: 40px;
+            animation: fadeIn 1.2s ease-out forwards;
+        }
+        .logo {
+            max-width: 320px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .tagline {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: #444;
+            letter-spacing: 1px;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 35px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+        .status-container {
+            margin-top: 5vh;
+            margin-bottom: auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.2s forwards;
+        }
+        .status-label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 5px;
+            color: #aaa;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+        .status-message {
+            font-size: 0.95rem;
+            color: #444;
+            margin-bottom: 32px;
+            line-height: 1.6;
+        }
+        .btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background-color: #004d71;
+            color: #ffffff;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin: 6px;
+            transition: opacity 0.2s ease;
+        }
+        .btn:hover {
+            opacity: 0.85;
+        }
+        .btn-outline {
+            background-color: transparent;
+            color: #004d71;
+            border: 2px solid #004d71;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.8s forwards;
+        }
+        footer {
+            width: 100%;
+            font-size: 0.85rem;
+            color: #999;
+            padding-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
+        }
+        footer a {
+            color: #004d71;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 480px) {
+            .logo { max-width: 240px; }
+            .tagline { font-size: 0.9rem; bottom: 45px; }
+            .btn { width: 100%; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-container">
+        <img src="logo.png" alt="Norxten Logo" class="logo">
+        <p class="tagline">Building foundational technology platforms.</p>
+    </div>
+
+    <div class="status-container">
+        <p class="status-label" id="status-label">Opening App</p>
+        <p class="status-message" id="status-message">
+            Taking you to GC App...<br>
+            <span style="font-size:0.85rem; color:#999;">
+                If nothing happens, use the button below.
+            </span>
+        </p>
+        <div class="btn-group">
+            <a href="#" class="btn" id="open-btn">Open GC App</a>
+            <a href="#" class="btn btn-outline" id="store-btn">Download GC App</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Norxten | <a href="mailto:info@norxten.com">info@norxten.com</a></p>
+    </footer>
+
+    <script>
+        const params = window.location.search;
+        const hash = window.location.hash;
+
+        // Pass all Supabase auth params through to the app
+        const deepLink = 'gcapp://auth/callback' + params + hash;
+
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+        const isAndroid = /Android/.test(navigator.userAgent);
+
+        // Update these when app is published
+        const IOS_STORE = 'https://apps.apple.com/app/id000000000';
+        const ANDROID_STORE = 'https://play.google.com/store/apps/details?id=com.norxten.gcapp';
+
+        const openBtn = document.getElementById('open-btn');
+        const storeBtn = document.getElementById('store-btn');
+        const statusLabel = document.getElementById('status-label');
+        const statusMessage = document.getElementById('status-message');
+
+        // Set store link based on platform
+        storeBtn.href = isAndroid ? ANDROID_STORE : IOS_STORE;
+
+        // Set deep link
+        openBtn.href = deepLink;
+
+        // Auto-attempt to open the app
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                window.location.href = deepLink;
+            }, 800);
+
+            // After 2.5s, if still on page, show fallback message
+            setTimeout(() => {
+                statusLabel.textContent = 'App Not Found';
+                statusMessage.innerHTML =
+                    'Could not open GC App automatically.<br>' +
+                    '<span style="font-size:0.85rem; color:#999;">' +
+                    'Open the app manually or download it below.' +
+                    '</span>';
+            }, 2500);
+        });
+    </script>
+
+</body>
+</html>
