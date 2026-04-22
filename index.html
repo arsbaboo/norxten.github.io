@@ -1,130 +1,1203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Norxten | Coming Soon</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Norxten Technologies Inc. — Software built for the construction industry</title>
+  <meta name="description" content="Norxten Technologies Inc. builds practical software for general contractors. Track crew, capture receipts, control project costs — from the field.">
+  <meta property="og:title" content="Norxten Technologies Inc.">
+  <meta property="og:description" content="Software built for the construction industry. Control your crew, costs, and project performance.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://norxten.com/">
+  <link rel="canonical" href="https://norxten.com/">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ─────────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary:       #314657;
+      --primary-dark:  #233342;
+      --primary-deeper:#1a2630;
+      --accent:        #2D9CDB;
+      --accent-dark:   #1d7ab8;
+      --success:       #16A34A;
+      --warning:       #F4A535;
+      --danger:        #DC2626;
+      --text:          #0d1117;
+      --text-sec:      #4b5563;
+      --text-muted:    #9ca3af;
+      --border:        #e4e7ec;
+      --bg:            #f7f8fa;
+      --surface:       #ffffff;
+      --font-display:  'Syne', sans-serif;
+      --font-body:     'DM Sans', sans-serif;
+      --radius:        14px;
+      --radius-sm:     8px;
+    }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--surface); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
 
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #ffffff;
-            color: #1a1a1a;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-            overflow: hidden;
-        }
+    /* ── Typography ───────────────────────────────────────────────────────── */
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; letter-spacing: -0.025em; }
+    h1 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 700; }
+    h3 { font-size: 1.1rem; font-weight: 600; }
 
-        /* Container to hold Logo and Tagline */
-        .header-container {
-            margin-top: auto;
-            position: relative; /* Essential for tagline positioning */
-            padding-bottom: 40px; /* Creates space for the tagline to overlap */
-            animation: fadeIn 1.2s ease-out forwards;
-        }
+    /* ── Layout ───────────────────────────────────────────────────────────── */
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 28px; }
+    .wrap--narrow { max-width: 720px; margin: 0 auto; padding: 0 28px; }
+    section { padding: 80px 0; }
 
-        .logo {
-            max-width: 320px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
+    /* ── NAV ──────────────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--primary);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .nav__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px; max-width: 1080px; margin: 0 auto; padding: 0 28px;
+    }
+    .nav__logo { display: flex; align-items: center; gap: 10px; }
+    .nav__logo img { height: 30px; }
+    .nav__logo-name {
+      font-family: var(--font-display); font-size: 1.1rem; font-weight: 700;
+      color: #fff; letter-spacing: -0.02em;
+    }
+    .nav__links { display: flex; gap: 32px; list-style: none; }
+    .nav__links a { font-size: .875rem; font-weight: 500; color: rgba(255,255,255,.55); transition: color .15s; }
+    .nav__links a:hover { color: #fff; }
+    .nav__links a.active { color: #fff; }
+    .nav__right { display: flex; align-items: center; gap: 14px; }
+    .nav__lang {
+      display: flex; background: rgba(255,255,255,.1); border-radius: 6px;
+      border: 0.5px solid rgba(255,255,255,.15); overflow: hidden;
+    }
+    .nav__lang a {
+      padding: 4px 11px; font-size: .72rem; font-weight: 600;
+      color: rgba(255,255,255,.45); transition: all .15s;
+    }
+    .nav__lang a.active { background: rgba(255,255,255,.18); color: #fff; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: var(--radius-sm); font-family: var(--font-body); font-size: .875rem; font-weight: 600; cursor: pointer; transition: all .18s; border: none; white-space: nowrap; }
+    .btn--white { background: #fff; color: var(--primary); }
+    .btn--white:hover { background: #f0f4f8; transform: translateY(-1px); }
+    .btn--ghost { background: transparent; color: rgba(255,255,255,.8); border: 1px solid rgba(255,255,255,.25); }
+    .btn--ghost:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .btn--primary { background: var(--primary); color: #fff; }
+    .btn--primary:hover { background: var(--primary-dark); transform: translateY(-1px); }
+    .btn--accent { background: var(--accent); color: #fff; }
+    .btn--accent:hover { background: var(--accent-dark); transform: translateY(-1px); }
+    .btn--outline { background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+    .btn--outline:hover { background: var(--primary); color: #fff; }
+    .btn--lg { padding: 12px 26px; font-size: 1rem; border-radius: 10px; }
+    .btn--sm { padding: 5px 14px; font-size: .8rem; }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav__hamburger span { display: block; width: 20px; height: 2px; background: rgba(255,255,255,.7); border-radius: 2px; }
+    .nav__mobile { display: none; flex-direction: column; background: var(--primary-dark); border-top: 1px solid rgba(255,255,255,.08); padding: 12px 28px 20px; }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a { padding: 10px 0; font-size: .95rem; font-weight: 500; color: rgba(255,255,255,.6); border-bottom: 0.5px solid rgba(255,255,255,.08); }
+    .nav__mobile a:last-child { border-bottom: none; }
 
-        .tagline {
-            font-size: 1.1rem;
-            font-weight: 400;
-            color: #444;
-            letter-spacing: 1px;
-            
-            /* The Movement Logic */
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 35px; /* Increase this number to move the tagline HIGHER */
-            
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
-        }
+    /* ── HERO ─────────────────────────────────────────────────────────────── */
+    .hero {
+      background: var(--primary);
+      overflow: hidden;
+      position: relative;
+      padding-top: 72px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 1px;
+      background: rgba(255,255,255,.08);
+    }
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: flex-end;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .hero__content { padding-bottom: 72px; }
+    .hero__pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.07);
+      border: 0.5px solid rgba(255,255,255,.15);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: .72rem; font-weight: 600; color: rgba(255,255,255,.65);
+      letter-spacing: .06em; text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    .hero__pill-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .hero__title { color: #fff; margin-bottom: 20px; }
+    .hero__title span { color: var(--accent); }
+    .hero__subtitle {
+      font-size: 1.05rem; color: rgba(255,255,255,.5); line-height: 1.75;
+      max-width: 480px; margin-bottom: 36px; font-weight: 300;
+    }
+    .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+    .hero__note { font-size: .75rem; color: rgba(255,255,255,.3); margin-top: 8px; }
+    .hero__badges { display: flex; gap: 10px; margin-top: 24px; flex-wrap: wrap; }
+    .hero__badge {
+      display: inline-flex; align-items: center; gap: 9px;
+      background: rgba(0,0,0,.3); border: 0.5px solid rgba(255,255,255,.1);
+      border-radius: 9px; padding: 7px 14px; color: #fff;
+    }
+    .hero__badge-icon { font-size: 1.2rem; }
+    .hero__badge-top { font-size: .62rem; color: rgba(255,255,255,.4); display: block; line-height: 1; margin-bottom: 2px; }
+    .hero__badge-name { font-family: var(--font-display); font-size: .85rem; font-weight: 700; display: block; }
 
-        /* Middle Section: Coming Soon */
-        .status-container {
-            margin-top: 5vh;
-            margin-bottom: auto;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.2s forwards;
-        }
+    /* ── Phone mockup ─────────────────────────────────────────────────────── */
+    .hero__visual { display: flex; justify-content: center; align-items: flex-end; }
+    .phone-frame {
+      width: 280px;
+      background: #1a2630;
+      border-radius: 36px 36px 0 0;
+      border: 1.5px solid rgba(255,255,255,.12);
+      border-bottom: none;
+      overflow: hidden;
+      box-shadow: 0 -16px 64px rgba(0,0,0,.5), 0 -4px 20px rgba(0,0,0,.3);
+      position: relative;
+    }
+    .phone-status {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 14px 20px 8px;
+      font-size: .65rem; font-weight: 600; color: rgba(255,255,255,.7);
+    }
+    .phone-status-icons { display: flex; gap: 5px; align-items: center; }
+    .phone-body { padding: 0 14px 0; }
 
-        .coming-soon {
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 5px;
-            color: #aaa;
-            text-transform: uppercase;
-        }
+    /* App screen styles */
+    .app-header {
+      background: var(--primary);
+      padding: 10px 14px 14px;
+      margin: 0 -14px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .app-label { font-size: .52rem; font-weight: 700; color: rgba(255,255,255,.4); letter-spacing: .1em; text-transform: uppercase; margin-bottom: 2px; }
+    .app-title { font-family: var(--font-display); font-size: 1.3rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .app-badge { background: rgba(255,255,255,.15); border-radius: 4px; padding: 2px 7px; font-size: .55rem; font-weight: 700; color: rgba(255,255,255,.7); margin-left: 6px; vertical-align: middle; }
+    .app-avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--primary-dark); border: 1.5px solid rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center; font-size: .6rem; font-weight: 700; color: #fff; }
+    .app-bell { position: relative; }
+    .app-bell-dot { position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: #DC2626; border-radius: 50%; border: 1px solid var(--primary); font-size: .45rem; color: #fff; display: flex; align-items: center; justify-content: center; }
 
-        /* Bottom Section: Footer */
-        footer {
-            width: 100%;
-            font-size: 0.85rem;
-            color: #999;
-            padding-top: 20px;
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1.5s forwards;
-        }
+    /* Hero chips */
+    .app-chips {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 6px; padding: 10px 0 8px;
+    }
+    .app-chip {
+      background: var(--primary-dark);
+      border: 0.5px solid rgba(255,255,255,.1);
+      border-radius: 9px; padding: 8px 8px;
+    }
+    .app-chip-label { font-size: .5rem; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 3px; }
+    .app-chip-value { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: #fff; }
+    .app-chip-sub { font-size: .5rem; color: rgba(255,255,255,.3); margin-top: 1px; }
+    .app-chip--green .app-chip-value { color: #4ADE80; }
+    .app-chip--green { background: rgba(22,163,74,.12); border-color: rgba(22,163,74,.2); }
 
-        footer a {
-            color: #004d71; /* Matches the blue 'X' in your logo */
-            text-decoration: none;
-            font-weight: 600;
-        }
+    /* Section label */
+    .app-section-label { font-size: .52rem; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .1em; padding: 8px 0 5px; }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+    /* Project card */
+    .app-project-card {
+      background: var(--primary);
+      border: 0.5px solid rgba(255,255,255,.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .app-project-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding: 10px 12px 8px;
+    }
+    .app-project-name { font-family: var(--font-display); font-size: .9rem; font-weight: 800; color: #fff; }
+    .app-project-client { font-size: .55rem; color: rgba(255,255,255,.4); margin-top: 1px; }
+    .app-tags { display: flex; gap: 4px; }
+    .app-tag { font-size: .48rem; font-weight: 700; border-radius: 4px; padding: 2px 6px; }
+    .app-tag--red { background: rgba(220,38,38,.2); color: #fca5a5; }
+    .app-tag--green { background: rgba(22,163,74,.2); color: #86efac; }
+    .app-project-body { background: rgba(255,255,255,.97); padding: 10px 12px; }
+    .app-cost-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 8px; }
+    .app-cost-cell { background: var(--bg); border-radius: 7px; padding: 6px 8px; }
+    .app-cost-label { font-size: .5rem; font-weight: 600; color: var(--text-sec); margin-bottom: 2px; }
+    .app-cost-value { font-family: var(--font-display); font-size: .78rem; font-weight: 700; color: var(--text); }
+    .app-cost-cell--total .app-cost-value { color: var(--accent); }
+    .app-progress-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+    .app-progress-label { font-size: .5rem; color: var(--text-sec); }
+    .app-progress-pct { font-size: .55rem; font-weight: 700; color: var(--text); }
+    .app-progress-bar { height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; margin-bottom: 5px; }
+    .app-progress-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+    .app-budget-row { display: flex; justify-content: space-between; }
+    .app-budget-item { font-size: .5rem; color: var(--text-sec); }
+    .app-budget-item span { font-weight: 600; color: var(--text); }
+    .app-detail-link { display: flex; justify-content: center; align-items: center; gap: 4px; padding: 7px; border-top: 0.5px solid var(--border); font-size: .55rem; font-weight: 600; color: var(--text-sec); }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+    /* ── Stats bar ────────────────────────────────────────────────────────── */
+    .stats-bar { background: var(--primary-dark); }
+    .stats-bar__inner {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      max-width: 1080px; margin: 0 auto;
+      border-left: 0.5px solid rgba(255,255,255,.06);
+    }
+    .stat-item {
+      padding: 18px 24px; text-align: center;
+      border-right: 0.5px solid rgba(255,255,255,.06);
+    }
+    .stat-item__value { font-family: var(--font-display); font-size: 1.5rem; font-weight: 800; color: #fff; letter-spacing: -0.02em; }
+    .stat-item__label { font-size: .75rem; color: rgba(255,255,255,.35); margin-top: 3px; }
 
-        @media (max-width: 480px) {
-            .logo { max-width: 240px; }
-            .tagline { font-size: 0.9rem; bottom: 45px; }
-        }
-    </style>
+    /* ── Section label ────────────────────────────────────────────────────── */
+    .section-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; display: block; }
+    .section-title { margin-bottom: 14px; }
+    .section-sub { font-size: 1.05rem; color: var(--text-sec); max-width: 560px; line-height: 1.7; margin-bottom: 48px; }
+
+    /* ── Product section ──────────────────────────────────────────────────── */
+    .product-section { background: var(--bg); }
+    .product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+    .feature-list { display: flex; flex-direction: column; }
+    .feature-item {
+      display: flex; gap: 18px; padding: 18px 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .feature-item:last-child { border-bottom: none; }
+    .feature-num {
+      width: 28px; height: 28px; border-radius: 7px;
+      background: var(--primary); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .7rem; font-weight: 700; color: rgba(255,255,255,.5);
+    }
+    .feature-text h3 { font-size: .9rem; margin-bottom: 4px; color: var(--text); }
+    .feature-text p { font-size: .825rem; color: var(--text-sec); line-height: 1.6; }
+
+    /* Screen mockup — detail view */
+    .screen-mockup {
+      background: #1a2630; border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.1);
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,.2);
+    }
+    .screen-topbar {
+      background: var(--primary); padding: 12px 14px 10px;
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .screen-title { font-family: var(--font-display); font-size: 1rem; font-weight: 800; color: #fff; }
+    .screen-sub { font-size: .6rem; color: rgba(255,255,255,.4); margin-top: 1px; }
+    .screen-body { padding: 12px 14px; }
+    .screen-kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 10px; }
+    .screen-kpi {
+      background: rgba(255,255,255,.05); border: 0.5px solid rgba(255,255,255,.08);
+      border-radius: 9px; padding: 9px 10px;
+    }
+    .screen-kpi-label { font-size: .55rem; color: rgba(255,255,255,.35); margin-bottom: 3px; }
+    .screen-kpi-value { font-family: var(--font-display); font-size: .95rem; font-weight: 700; color: #fff; }
+    .screen-kpi--accent .screen-kpi-value { color: var(--accent); }
+    .screen-kpi--green .screen-kpi-value { color: #4ADE80; }
+    .screen-kpi--amber .screen-kpi-value { color: var(--warning); }
+    .screen-bar-wrap { background: rgba(255,255,255,.05); border: 0.5px solid rgba(255,255,255,.08); border-radius: 9px; padding: 9px 10px; margin-bottom: 8px; }
+    .screen-bar-header { display: flex; justify-content: space-between; margin-bottom: 6px; }
+    .screen-bar-label { font-size: .55rem; color: rgba(255,255,255,.35); }
+    .screen-bar-pct { font-size: .6rem; font-weight: 700; color: #fff; }
+    .screen-bar { height: 4px; background: rgba(255,255,255,.08); border-radius: 2px; overflow: hidden; }
+    .screen-bar-fill { height: 100%; background: var(--accent); border-radius: 2px; }
+    .screen-crew-row {
+      background: rgba(255,255,255,.04); border: 0.5px solid rgba(255,255,255,.07);
+      border-radius: 9px; padding: 8px 10px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .screen-crew-label { font-size: .55rem; color: rgba(255,255,255,.35); }
+    .screen-crew-val { font-size: .75rem; font-weight: 600; color: #fff; }
+    .screen-avatars { display: flex; }
+    .screen-av {
+      width: 20px; height: 20px; border-radius: 50%;
+      border: 1.5px solid #1a2630;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .5rem; font-weight: 700; color: #fff;
+      margin-left: -5px;
+    }
+    .screen-av:first-child { margin-left: 0; }
+
+    /* Crew screen mockup */
+    .crew-screen { background: #f7f8fa; border-radius: 18px; border: 1px solid var(--border); overflow: hidden; box-shadow: 0 8px 40px rgba(0,0,0,.1); }
+    .crew-topbar { background: var(--primary); padding: 12px 14px 10px; }
+    .crew-chips { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; padding: 10px 14px 8px; background: var(--primary); }
+    .crew-chip { border-radius: 8px; padding: 7px 8px; }
+    .crew-chip-label { font-size: .5rem; font-weight: 700; color: rgba(255,255,255,.4); text-transform: uppercase; letter-spacing: .07em; margin-bottom: 2px; }
+    .crew-chip-val { font-family: var(--font-display); font-size: .9rem; font-weight: 800; color: #fff; }
+    .crew-chip--green { background: rgba(22,163,74,.15); }
+    .crew-chip--blue { background: rgba(45,156,219,.15); }
+    .crew-chip--red { background: rgba(220,38,38,.15); }
+    .crew-chip--red .crew-chip-val { color: #fca5a5; }
+    .crew-body { padding: 10px 12px; }
+    .crew-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+    .crew-tab { padding: 6px 10px; font-size: .65rem; font-weight: 600; color: var(--text-muted); }
+    .crew-tab.active { color: var(--primary); border-bottom: 2px solid var(--primary); }
+    .crew-search {
+      background: #fff; border: 0.5px solid var(--border); border-radius: 8px;
+      padding: 6px 10px; display: flex; gap: 6px; align-items: center;
+      margin-bottom: 8px;
+    }
+    .crew-search-icon { width: 10px; height: 10px; border-radius: 50%; border: 1.5px solid var(--text-muted); }
+    .crew-search-text { font-size: .6rem; color: var(--text-muted); }
+    .crew-filters { display: flex; gap: 5px; margin-bottom: 10px; flex-wrap: wrap; }
+    .crew-filter { background: #fff; border: 0.5px solid var(--border); border-radius: 100px; padding: 3px 9px; font-size: .58rem; font-weight: 600; color: var(--text-sec); }
+    .crew-filter.active { background: var(--primary); color: #fff; border-color: var(--primary); }
+    .crew-employee-row {
+      display: flex; align-items: center; gap: 8px;
+      padding: 8px 10px; background: #fff; border-radius: 9px;
+      border: 0.5px solid var(--border); margin-bottom: 5px;
+    }
+    .crew-emp-avatar {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: var(--bg); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .55rem; font-weight: 700; color: var(--primary); flex-shrink: 0;
+    }
+    .crew-emp-name { font-size: .65rem; font-weight: 600; color: var(--text); }
+    .crew-emp-sub { font-size: .55rem; color: var(--text-muted); }
+    .crew-emp-flag { background: rgba(244,165,53,.15); border-radius: 3px; padding: 1px 5px; font-size: .48rem; font-weight: 700; color: #92400e; margin-left: 4px; }
+    .crew-emp-right { margin-left: auto; text-align: right; }
+    .crew-emp-hours { font-size: .6rem; font-weight: 600; color: var(--text-sec); }
+    .crew-emp-rate { font-size: .55rem; color: var(--text-muted); }
+    .crew-flag-card {
+      background: rgba(220,38,38,.05); border: 0.5px solid rgba(220,38,38,.2);
+      border-radius: 9px; padding: 8px 10px; margin-top: 4px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .crew-flag-title { font-size: .62rem; font-weight: 700; color: #DC2626; }
+    .crew-flag-sub { font-size: .55rem; color: var(--text-sec); margin-top: 1px; }
+    .crew-flag-link { font-size: .6rem; font-weight: 600; color: var(--accent); }
+
+    /* ── Feature cards grid ───────────────────────────────────────────────── */
+    .features-section { background: var(--surface); }
+    .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .feature-card {
+      background: var(--bg); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 24px 20px;
+      transition: border-color .2s, transform .2s;
+    }
+    .feature-card:hover { border-color: var(--accent); transform: translateY(-2px); }
+    .feature-card__icon {
+      width: 40px; height: 40px; background: var(--primary);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 14px;
+    }
+    .feature-card__icon svg { width: 18px; height: 18px; fill: none; stroke: rgba(255,255,255,.8); stroke-width: 1.8; stroke-linecap: round; }
+    .feature-card h3 { font-size: .925rem; margin-bottom: 6px; }
+    .feature-card p { font-size: .825rem; color: var(--text-sec); line-height: 1.6; }
+
+    /* ── Pricing ──────────────────────────────────────────────────────────── */
+    .pricing-section { background: var(--bg); }
+    .pricing-toggle-wrap { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; }
+    .pricing-toggle { display: flex; background: #fff; border: 0.5px solid var(--border); border-radius: 9px; overflow: hidden; }
+    .pricing-toggle__btn {
+      padding: 7px 18px; font-size: .825rem; font-weight: 600; cursor: pointer;
+      color: var(--text-sec); background: transparent; border: none; transition: all .15s;
+    }
+    .pricing-toggle__btn.active { background: var(--primary); color: #fff; border-radius: 8px; }
+    .pricing-save-badge { display: none; background: var(--success); color: #fff; font-size: .65rem; font-weight: 700; border-radius: 4px; padding: 2px 7px; margin-left: 6px; }
+    .yr .pricing-save-badge { display: inline; }
+    .currency-toggle { display: flex; background: #fff; border: 0.5px solid var(--border); border-radius: 9px; overflow: hidden; align-items: center; }
+    .currency-toggle__label { font-size: .75rem; color: var(--text-sec); padding: 0 10px; }
+    .currency-toggle__btn { padding: 6px 14px; font-size: .8rem; font-weight: 600; cursor: pointer; color: var(--text-sec); background: transparent; border: none; transition: all .15s; }
+    .currency-toggle__btn.active { background: var(--primary); color: #fff; border-radius: 8px; }
+    .pricing-highlight {
+      background: var(--primary); color: #fff;
+      border-radius: var(--radius); padding: 16px 20px;
+      display: flex; gap: 14px; align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .pricing-highlight__icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+    .pricing-highlight__text { font-size: .875rem; color: rgba(255,255,255,.8); line-height: 1.6; }
+    .pricing-highlight__text strong { color: #fff; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .plan-card {
+      background: var(--surface); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 24px 20px; position: relative;
+      transition: transform .18s;
+    }
+    .plan-card:hover { transform: translateY(-2px); }
+    .plan-card--featured { border: 2px solid var(--primary); }
+    .plan-badge {
+      position: absolute; top: -11px; left: 50%; transform: translateX(-50%);
+      background: var(--primary); color: #fff;
+      font-size: .65rem; font-weight: 700; letter-spacing: .05em;
+      text-transform: uppercase; padding: 3px 12px; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .plan-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+    .plan-desc { font-size: .775rem; color: var(--text-muted); margin-bottom: 18px; line-height: 1.5; }
+    .plan-price-wrap { margin-bottom: 6px; }
+    .plan-price { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: var(--text); letter-spacing: -0.025em; }
+    .plan-period { font-size: .825rem; color: var(--text-muted); font-weight: 400; }
+    .plan-annual { font-size: .72rem; color: var(--success); font-weight: 600; margin-bottom: 18px; min-height: 1.2em; }
+    .plan-divider { height: 0.5px; background: var(--border); margin: 16px 0; }
+    .plan-features { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 22px; }
+    .plan-features li { display: flex; gap: 8px; font-size: .825rem; color: var(--text-sec); line-height: 1.4; }
+    .plan-features li::before { content: '✓'; color: var(--success); font-weight: 700; flex-shrink: 0; }
+    .plan-cta { width: 100%; padding: 10px; border-radius: 9px; font-family: var(--font-body); font-size: .875rem; font-weight: 700; cursor: pointer; text-align: center; transition: all .18s; border: 1.5px solid var(--primary); background: transparent; color: var(--primary); }
+    .plan-card--featured .plan-cta { background: var(--primary); color: #fff; }
+    .plan-cta:hover { background: var(--primary); color: #fff; }
+    .plan-note { font-size: .7rem; color: var(--text-muted); text-align: center; margin-top: 8px; }
+    .pricing-transparency {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px; margin-top: 20px;
+      background: var(--surface); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 18px 20px;
+    }
+    .transparency-item strong { display: block; font-size: .825rem; color: var(--text); margin-bottom: 4px; }
+    .transparency-item span { font-size: .775rem; color: var(--text-sec); line-height: 1.55; }
+
+    /* ── About strip ──────────────────────────────────────────────────────── */
+    .about-section { background: var(--primary); }
+    .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 56px; align-items: center; }
+    .about-eyebrow { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 14px; display: block; }
+    .about-title { color: #fff; margin-bottom: 18px; }
+    .about-text { font-size: .975rem; color: rgba(255,255,255,.55); line-height: 1.8; margin-bottom: 28px; font-weight: 300; }
+    .about-cards { display: flex; flex-direction: column; gap: 10px; }
+    .about-card {
+      background: rgba(255,255,255,.07); border: 0.5px solid rgba(255,255,255,.1);
+      border-radius: 10px; padding: 14px 18px;
+    }
+    .about-card__title { font-size: .9rem; font-weight: 600; color: #fff; margin-bottom: 2px; }
+    .about-card__sub { font-size: .775rem; color: rgba(255,255,255,.4); }
+
+    /* ── Support CTA ──────────────────────────────────────────────────────── */
+    .support-cta { background: var(--bg); text-align: center; padding: 72px 0; }
+    .support-cta__box {
+      max-width: 520px; margin: 0 auto;
+      background: var(--surface); border: 0.5px solid var(--border);
+      border-radius: var(--radius); padding: 44px 36px;
+    }
+    .support-cta__title { margin-bottom: 12px; }
+    .support-cta__text { font-size: .975rem; color: var(--text-sec); margin-bottom: 28px; line-height: 1.7; }
+    .support-cta__email { display: block; margin-top: 14px; font-size: 1rem; font-weight: 600; color: var(--accent); }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    .footer { background: var(--primary-deeper); padding: 48px 0 28px; }
+    .footer__inner { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+    .footer__logo { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+    .footer__logo img { height: 26px; opacity: .85; }
+    .footer__logo-name { font-family: var(--font-display); font-size: .95rem; font-weight: 700; color: rgba(255,255,255,.8); }
+    .footer__brand-desc { font-size: .775rem; color: rgba(255,255,255,.3); line-height: 1.65; max-width: 220px; }
+    .footer__col-title { font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.3); margin-bottom: 14px; }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .footer__links a { font-size: .8rem; color: rgba(255,255,255,.45); transition: color .15s; }
+    .footer__links a:hover { color: rgba(255,255,255,.8); }
+    .footer__bottom { border-top: 0.5px solid rgba(255,255,255,.08); padding-top: 22px; }
+    .footer__legal { font-size: .75rem; color: rgba(255,255,255,.25); line-height: 1.8; }
+    .footer__legal a { color: rgba(255,255,255,.35); }
+
+    /* ── Prices (JS-driven) ───────────────────────────────────────────────── */
+    .price-mo { display: inline; }
+    .price-yr { display: none; }
+    .yr .price-mo { display: none; }
+    .yr .price-yr { display: inline; }
+    .plan-annual-yr { display: none; }
+    .yr .plan-annual-yr { display: block; }
+    .yr .plan-annual-mo { display: none; }
+
+    /* ── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero__inner { grid-template-columns: 1fr; }
+      .hero__visual { display: none; }
+      .iphone-frame { width: 220px; }
+      .iphone-frame--sm { width: 180px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .features-grid { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+      .about-grid { grid-template-columns: 1fr; }
+      .footer__inner { grid-template-columns: 1fr 1fr; }
+      .pricing-transparency { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .nav__links, .nav__right .btn { display: none; }
+      .nav__hamburger { display: flex; }
+      .features-grid { grid-template-columns: 1fr; }
+      .footer__inner { grid-template-columns: 1fr; }
+      .stats-bar__inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── iPhone frame ────────────────────────────────────────────────────── */
+    .iphone-frame {
+      position: relative;
+      width: 280px;
+      background: #1a1a1e;
+      border-radius: 44px;
+      border: 1.5px solid #3a3a3c;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,.08),
+        inset 0 0 0 1px rgba(255,255,255,.05),
+        0 24px 80px rgba(0,0,0,.6),
+        0 8px 24px rgba(0,0,0,.4);
+      padding: 14px 10px 10px;
+    }
+    .iphone-frame--sm {
+      width: 220px;
+      border-radius: 38px;
+    }
+    .iphone-inner {
+      background: #000;
+      border-radius: 34px;
+      overflow: hidden;
+      position: relative;
+    }
+    .iphone-frame--sm .iphone-inner { border-radius: 28px; }
+    .iphone-notch {
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 100px; height: 28px;
+      background: #000;
+      border-radius: 0 0 20px 20px;
+      z-index: 10;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .iphone-frame--sm .iphone-notch { width: 80px; height: 22px; }
+    .iphone-camera {
+      width: 10px; height: 10px;
+      background: #1c1c1e;
+      border-radius: 50%;
+      border: 1.5px solid #2c2c2e;
+      margin-top: 8px;
+    }
+    .iphone-frame--sm .iphone-camera { width: 8px; height: 8px; }
+    .iphone-screen {
+      width: 100%;
+      border-radius: 34px;
+      overflow: hidden;
+    }
+    .iphone-frame--sm .iphone-screen { border-radius: 28px; }
+    .iphone-screen img {
+      width: 100%;
+      display: block;
+      border-radius: 34px;
+    }
+    .iphone-frame--sm .iphone-screen img { border-radius: 28px; }
+    .iphone-home-indicator {
+      height: 20px;
+      display: flex; align-items: center; justify-content: center;
+      background: #000;
+    }
+    .iphone-home-indicator::after {
+      content: '';
+      display: block;
+      width: 100px; height: 4px;
+      background: rgba(255,255,255,.3);
+      border-radius: 2px;
+    }
+    .iphone-frame--sm .iphone-home-indicator { height: 16px; }
+    .iphone-frame--sm .iphone-home-indicator::after { width: 80px; height: 3px; }
+    /* Side buttons */
+    .iphone-side {
+      position: absolute;
+      top: 0; bottom: 0;
+      display: flex; flex-direction: column; justify-content: flex-start;
+      pointer-events: none;
+    }
+    .iphone-side--left { left: -3px; align-items: flex-end; padding-top: 80px; gap: 12px; }
+    .iphone-side--right { right: -3px; align-items: flex-start; padding-top: 100px; }
+    .iphone-btn-vol {
+      width: 3px; height: 32px;
+      background: #3a3a3c;
+      border-radius: 2px 0 0 2px;
+    }
+    .iphone-btn-silent {
+      width: 3px; height: 20px;
+      background: #3a3a3c;
+      border-radius: 2px 0 0 2px;
+      margin-top: -4px;
+    }
+    .iphone-btn-power {
+      width: 3px; height: 48px;
+      background: #3a3a3c;
+      border-radius: 0 2px 2px 0;
+    }
+    .iphone-frame--sm .iphone-btn-vol { height: 24px; }
+    .iphone-frame--sm .iphone-btn-power { height: 36px; }
+
+    /* ── Animations ───────────────────────────────────────────────────────── */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+    .fade-up { opacity: 0; animation: fadeUp .5s ease-out forwards; }
+    .fade-up:nth-child(2) { animation-delay: .08s; }
+    .fade-up:nth-child(3) { animation-delay: .16s; }
+    .fade-up:nth-child(4) { animation-delay: .24s; }
+    .fade-up:nth-child(5) { animation-delay: .32s; }
+    .fade-up:nth-child(6) { animation-delay: .40s; }
+  </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <img src="logo.png" alt="Norxten Logo" class="logo">
-        <p class="tagline">Building foundational technology platforms.</p>
+<!-- ════════════════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════════════════ -->
+<nav class="nav">
+  <div class="nav__inner">
+    <a href="/" class="nav__logo" aria-label="Norxten home">
+      <img src="logo.png" alt="Norxten">
+      <span class="nav__logo-name">Norxten</span>
+    </a>
+    <ul class="nav__links">
+      <li><a href="/" class="active">Home</a></li>
+      <li><a href="about/">About</a></li>
+      <li><a href="products/">Products</a></li>
+      <li><a href="support/">Support</a></li>
+      <li><a href="contact/">Contact</a></li>
+    </ul>
+    <div class="nav__right">
+      <div class="nav__lang">
+        <a href="/" class="active">EN</a>
+        <a href="#">FR</a>
+      </div>
+      <a href="support/" class="btn btn--ghost btn--sm">Support</a>
+      <a href="products/norxten-core/" class="btn btn--white btn--sm">Get started</a>
+    </div>
+    <button class="nav__hamburger" aria-label="Open menu" onclick="document.querySelector('.nav__mobile').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile">
+    <a href="/">Home</a>
+    <a href="about/">About</a>
+    <a href="products/">Products</a>
+    <a href="support/">Support</a>
+    <a href="contact/">Contact</a>
+    <a href="products/norxten-core/">Get started →</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero__inner">
+    <div class="hero__content">
+      <div class="hero__pill">
+        <span class="hero__pill-dot"></span>
+        Introducing the Norxten Core app
+      </div>
+      <h1 class="hero__title">
+        Know exactly what<br>your projects cost.<br>
+        <span>In real time.</span>
+      </h1>
+      <p class="hero__subtitle">
+        Norxten Technologies Inc. builds software for general contractors.
+        The Norxten Core app gives you instant visibility into job costs,
+        crew hours, and project performance — from your phone.
+      </p>
+      <div class="hero__cta">
+        <a href="products/norxten-core/" class="btn btn--white btn--lg">See the Norxten Core app</a>
+        <a href="support/" class="btn btn--ghost btn--lg">Get support →</a>
+      </div>
+      <p class="hero__note">14-day free trial · No credit card required</p>
+      <div class="hero__badges">
+        <a href="#" class="hero__badge" aria-label="Download on App Store">
+          <span class="hero__badge-icon">🍎</span>
+          <span>
+            <span class="hero__badge-top">Download on the</span>
+            <span class="hero__badge-name">App Store</span>
+          </span>
+        </a>
+        <a href="#" class="hero__badge" aria-label="Get it on Google Play">
+          <span class="hero__badge-icon">▶</span>
+          <span>
+            <span class="hero__badge-top">Get it on</span>
+            <span class="hero__badge-name">Google Play</span>
+          </span>
+        </a>
+      </div>
     </div>
 
-    <div class="status-container">
-        <p class="coming-soon">COMING SOON...</p>
+
+    <!-- Hero — real Dashboard screenshot in iPhone frame -->
+    <div class="hero__visual">
+      <div class="iphone-frame">
+        <div class="iphone-side iphone-side--left">
+          <div class="iphone-btn-vol"></div>
+          <div class="iphone-btn-vol"></div>
+          <div class="iphone-btn-silent"></div>
+        </div>
+        <div class="iphone-side iphone-side--right">
+          <div class="iphone-btn-power"></div>
+        </div>
+        <div class="iphone-inner">
+          <div class="iphone-notch">
+            <div class="iphone-camera"></div>
+          </div>
+          <div class="iphone-screen">
+            <img src="screenshot-dashboard.jpeg" alt="Norxten Core app dashboard" loading="eager">
+          </div>
+          <div class="iphone-home-indicator"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</section>
+
+<!-- Stats bar -->
+<div class="stats-bar">
+  <div class="stats-bar__inner">
+    <div class="stat-item">
+      <div class="stat-item__value">14</div>
+      <div class="stat-item__label">Day free trial — no credit card</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-item__value">86%</div>
+      <div class="stat-item__label">OCR accuracy on field receipts</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-item__value">iOS + Android</div>
+      <div class="stat-item__label">Available on both platforms</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════════════════
+     PRODUCT — with two app screens
+═══════════════════════════════════════════════════════════ -->
+<section class="product-section">
+  <div class="wrap">
+    <span class="section-eyebrow">Our product</span>
+    <h2 class="section-title">The Norxten Core app</h2>
+    <p class="section-sub">Built for general contractors who need to know — right now — what a project actually costs. Job expenses, crew hours, and project performance from your phone.</p>
+
+    <div class="product-grid">
+      <!-- Feature list -->
+      <div class="feature-list">
+        <div class="feature-item">
+          <div class="feature-num">01</div>
+          <div class="feature-text">
+            <h3>Job cost tracking</h3>
+            <p>See total job cost — materials, labour, overhead — updated in real time the moment a receipt is scanned or a session ends.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">02</div>
+          <div class="feature-text">
+            <h3>Crew cost visibility</h3>
+            <p>Labour cost per project, per employee — with automatic overtime calculation and GPS-verified punch-in/out.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">03</div>
+          <div class="feature-text">
+            <h3>Receipt &amp; invoice capture</h3>
+            <p>AI-powered OCR reads vendor, amounts, and taxes from any receipt or invoice. No manual data entry.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">04</div>
+          <div class="feature-text">
+            <h3>Missing invoice alerts</h3>
+            <p>Flag unverified expenses before they become budget surprises. Every receipt is accounted for, every tax captured.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">05</div>
+          <div class="feature-text">
+            <h3>Crew management &amp; GPS validation</h3>
+            <p>QR code punch-in with GPS verification. Know who is actually on site and when. Flag suspicious sessions for review.</p>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-num">06</div>
+          <div class="feature-text">
+            <h3>Project closure reports</h3>
+            <p>PDF and CSV at project finish — full cost breakdown, profit margin, labour summary — ready to send to your client.</p>
+          </div>
+        </div>
+        <div style="padding-top:24px">
+          <a href="products/norxten-core/" class="btn btn--outline">See all features of the Norxten Core app →</a>
+        </div>
+      </div>
+
+      <!-- Two stacked app screen mockups -->
+      <!-- Two real app screenshots in iPhone frames -->
+      <div style="display:flex;flex-direction:column;gap:32px;align-items:center">
+
+        <div class="iphone-frame iphone-frame--sm">
+          <div class="iphone-side iphone-side--left">
+            <div class="iphone-btn-vol"></div>
+            <div class="iphone-btn-vol"></div>
+            <div class="iphone-btn-silent"></div>
+          </div>
+          <div class="iphone-side iphone-side--right">
+            <div class="iphone-btn-power"></div>
+          </div>
+          <div class="iphone-inner">
+            <div class="iphone-notch"><div class="iphone-camera"></div></div>
+            <div class="iphone-screen">
+              <img src="screenshot-crew.png" alt="Norxten Core crew management">
+            </div>
+            <div class="iphone-home-indicator"></div>
+          </div>
+        </div>
+
+        <div class="iphone-frame iphone-frame--sm">
+          <div class="iphone-side iphone-side--left">
+            <div class="iphone-btn-vol"></div>
+            <div class="iphone-btn-vol"></div>
+            <div class="iphone-btn-silent"></div>
+          </div>
+          <div class="iphone-side iphone-side--right">
+            <div class="iphone-btn-power"></div>
+          </div>
+          <div class="iphone-inner">
+            <div class="iphone-notch"><div class="iphone-camera"></div></div>
+            <div class="iphone-screen">
+              <img src="screenshot-punch.png" alt="Norxten Core employee punch-in">
+            </div>
+            <div class="iphone-home-indicator"></div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FEATURES GRID
+═══════════════════════════════════════════════════════════ -->
+<section class="features-section">
+  <div class="wrap">
+    <span class="section-eyebrow">Capabilities</span>
+    <h2 class="section-title">Everything in one app.</h2>
+    <p class="section-sub">No spreadsheets. No paper. No guessing.</p>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 18 18"><rect x="2" y="2" width="14" height="14" rx="2"/><path d="M6 7h6M6 10h4"/></svg>
+        </div>
+        <h3>AI receipt &amp; invoice scanning</h3>
+        <p>Point your camera at any receipt or invoice. OCR and AI extract vendor, amounts, and taxes automatically.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 18 18"><circle cx="9" cy="6" r="3"/><path d="M3 16c0-3.3 2.7-6 6-6s6 2.7 6 6"/></svg>
+        </div>
+        <h3>Crew management</h3>
+        <p>Invite employees, assign to projects, manage your entire team. QR punch-in/out with GPS verification.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 18 18"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg>
+        </div>
+        <h3>Labour &amp; overtime tracking</h3>
+        <p>Automatic OT calculation per employee, per day. Real labour cost per project — updated in real time.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 18 18"><path d="M2 14L6 8l3 4 3-6 4 6"/></svg>
+        </div>
+        <h3>Budget vs actual</h3>
+        <p>Set initial budgets, record formal revisions separately. Get alerts before you go over budget.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 18 18"><path d="M9 2l1.5 4H15l-3.5 2.5 1.5 4L9 10l-4 2.5 1.5-4L3 6h4.5z"/></svg>
+        </div>
+        <h3>Project closure reports</h3>
+        <p>PDF and CSV reports at project finish — full cost breakdown, labour summary, profit margin.</p>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 18 18"><circle cx="9" cy="8" r="3"/><path d="M9 11c-3 0-6 1.5-6 3v1h12v-1c0-1.5-3-3-6-3z"/><path d="M9 2v2M5 4l1.5 1.5M13 4l-1.5 1.5"/></svg>
+        </div>
+        <h3>GPS work validation</h3>
+        <p>GPS coordinates captured at punch-in and punch-out verify on-site presence. Flag and review exceptions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     PRICING
+═══════════════════════════════════════════════════════════ -->
+<section class="pricing-section" id="pricing">
+  <div class="wrap">
+    <span class="section-eyebrow">Pricing</span>
+    <h2 class="section-title">Simple. No hidden fees.</h2>
+    <p class="section-sub" style="margin-bottom:28px">14-day free trial on the Field plan. No credit card required.</p>
+
+    <div class="pricing-toggle-wrap">
+      <div class="pricing-toggle">
+        <button class="pricing-toggle__btn active" onclick="setBilling('mo',this)">Monthly</button>
+        <button class="pricing-toggle__btn" onclick="setBilling('yr',this)">Yearly <span class="pricing-save-badge">−17%</span></button>
+      </div>
+      <div class="currency-toggle">
+        <span class="currency-toggle__label">Currency:</span>
+        <button class="currency-toggle__btn active" id="usd-btn" onclick="setCurr('USD')">USD</button>
+        <button class="currency-toggle__btn" id="cad-btn" onclick="setCurr('CAD')">CAD</button>
+      </div>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Norxten | <a href="mailto:info@norxten.com">info@norxten.com</a></p>
-    </footer>
+    <div class="pricing-highlight">
+      <span class="pricing-highlight__icon">💡</span>
+      <div class="pricing-highlight__text">
+        <strong>Most customers start on Field.</strong>
+        One recovered missing invoice, one caught tax error, or one corrected crew timesheet typically covers the first month.
+      </div>
+    </div>
 
+    <div class="pricing-grid">
+      <!-- Starter -->
+      <div class="plan-card fade-up">
+        <div class="plan-name">Starter</div>
+        <div class="plan-desc">Small crews and single-project contractors</div>
+        <div class="plan-price-wrap">
+          <span class="plan-price price-mo" id="starter-mo">$37</span>
+          <span class="plan-price price-yr" id="starter-yr">$31</span>
+          <span class="plan-period">/month</span>
+        </div>
+        <div class="plan-annual plan-annual-yr" id="starter-annual-yr">Billed annually — save 2 months</div>
+        <div class="plan-annual plan-annual-mo">&nbsp;</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>5 active employees</li>
+          <li>30 OCR receipt scans/month</li>
+          <li>Unlimited projects</li>
+          <li>Job &amp; crew cost tracking</li>
+          <li>Labour &amp; overtime calculation</li>
+          <li>Project reports &amp; CSV export</li>
+          <li>GPS punch-in validation</li>
+        </ul>
+        <button class="plan-cta">Start free trial</button>
+      </div>
+      <!-- Field -->
+      <div class="plan-card plan-card--featured fade-up">
+        <div class="plan-badge">Most popular</div>
+        <div class="plan-name">Field</div>
+        <div class="plan-desc">Growing contractors managing multiple projects</div>
+        <div class="plan-price-wrap">
+          <span class="plan-price price-mo" id="field-mo">$67</span>
+          <span class="plan-price price-yr" id="field-yr">$55</span>
+          <span class="plan-period">/month</span>
+        </div>
+        <div class="plan-annual plan-annual-yr" id="field-annual-yr">Billed annually — save 2 months</div>
+        <div class="plan-annual plan-annual-mo">&nbsp;</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>15 active employees</li>
+          <li>Unlimited OCR receipt scans</li>
+          <li>Unlimited projects</li>
+          <li>Everything in Starter</li>
+          <li>Priority support</li>
+        </ul>
+        <button class="plan-cta">Start free trial</button>
+        <div class="plan-note">14-day trial · No credit card required</div>
+      </div>
+      <!-- Pro -->
+      <div class="plan-card fade-up">
+        <div class="plan-name">Pro</div>
+        <div class="plan-desc">Larger operations requiring full reporting</div>
+        <div class="plan-price-wrap">
+          <span class="plan-price price-mo" id="pro-mo">$141</span>
+          <span class="plan-price price-yr" id="pro-yr">$117</span>
+          <span class="plan-period">/month</span>
+        </div>
+        <div class="plan-annual plan-annual-yr" id="pro-annual-yr">Billed annually — save 2 months</div>
+        <div class="plan-annual plan-annual-mo">&nbsp;</div>
+        <div class="plan-divider"></div>
+        <ul class="plan-features">
+          <li>Unlimited active employees</li>
+          <li>Unlimited OCR scans</li>
+          <li>Unlimited projects</li>
+          <li>Everything in Field</li>
+          <li>PDF project closure reports</li>
+          <li>Project archive access</li>
+        </ul>
+        <button class="plan-cta">Start free trial</button>
+      </div>
+    </div>
+
+    <div class="pricing-transparency">
+      <div class="transparency-item">
+        <strong>What is an active employee?</strong>
+        <span>Anyone who clocks in at least once during the billing month. Add or remove team members anytime — you only pay for those who work.</span>
+      </div>
+      <div class="transparency-item">
+        <strong>What counts as an OCR scan?</strong>
+        <span>Each receipt or invoice scanned with the camera. Manual expense entries and cached rescans don't count toward your limit.</span>
+      </div>
+      <div class="transparency-item">
+        <strong>Can I change plans?</strong>
+        <span>Yes, anytime. Upgrades take effect immediately. Downgrades apply at the next billing cycle. Cancel through your app store.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════════════════════ -->
+<section class="about-section">
+  <div class="wrap">
+    <div class="about-grid">
+      <div>
+        <span class="about-eyebrow">About Norxten Technologies Inc.</span>
+        <h2 class="about-title">We build software for people who build things.</h2>
+        <p class="about-text">
+          Norxten Technologies Inc. builds practical software for general contractors and field-based businesses. We focus on operational clarity, cost control, and reliable project data — helping companies run crews, track expenses, and manage projects with greater confidence.
+        </p>
+        <a href="about/" class="btn btn--ghost">About Norxten Technologies →</a>
+      </div>
+      <div class="about-cards">
+        <div class="about-card">
+          <div class="about-card__title">Norxten Technologies Inc.</div>
+          <div class="about-card__sub">Legal entity name</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card__title">Quebec, Canada</div>
+          <div class="about-card__sub">Federally incorporated Canadian company</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card__title">info@norxten.com</div>
+          <div class="about-card__sub">General inquiries</div>
+        </div>
+        <div class="about-card">
+          <div class="about-card__title">support@norxten.com</div>
+          <div class="about-card__sub">Customer support</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     SUPPORT CTA
+═══════════════════════════════════════════════════════════ -->
+<section class="support-cta">
+  <div class="wrap">
+    <div class="support-cta__box">
+      <h2 class="support-cta__title">Questions about the Norxten Core app?</h2>
+      <p class="support-cta__text">Our support team is here for you — whether you're evaluating the app, setting up your team, or troubleshooting. We respond within one business day.</p>
+      <a href="support/" class="btn btn--primary btn--lg">Go to support</a>
+      <a href="mailto:support@norxten.com" class="support-cta__email">support@norxten.com</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__inner">
+      <div>
+        <div class="footer__logo">
+          <img src="logo.png" alt="Norxten">
+          <span class="footer__logo-name">Norxten</span>
+        </div>
+        <p class="footer__brand-desc">Software for general contractors and field-based businesses.</p>
+      </div>
+      <div>
+        <div class="footer__col-title">Company</div>
+        <ul class="footer__links">
+          <li><a href="about/">About</a></li>
+          <li><a href="products/">Products</a></li>
+          <li><a href="contact/">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Product</div>
+        <ul class="footer__links">
+          <li><a href="products/norxten-core/">Norxten Core app</a></li>
+          <li><a href="support/">Support</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Legal</div>
+        <ul class="footer__links">
+          <li><a href="privacy/">Privacy Policy</a></li>
+          <li><a href="terms/">Terms of Service</a></li>
+          <li><a href="fr/privacy/">Politique de confidentialité</a></li>
+          <li><a href="fr/terms/">Conditions d'utilisation</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="footer__legal">
+        © 2026 Norxten Technologies Inc. All rights reserved.<br>
+        Norxten Technologies Inc. — Quebec, Canada &nbsp;·&nbsp;
+        <a href="mailto:info@norxten.com">info@norxten.com</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════════════
+     SCRIPTS
+═══════════════════════════════════════════════════════════ -->
+<script>
+  /* ── Pricing toggle ───────────────────────────────────────────────────── */
+  const prices = {
+    USD: { mo: { s:37,  f:67,  p:141 }, yr: { s:31,  f:55,  p:117 } },
+    CAD: { mo: { s:50,  f:90,  p:190 }, yr: { s:42,  f:75,  p:158 } }
+  };
+  let currCurr = 'USD', currBilling = 'mo';
+
+  function updatePrices() {
+    const d = prices[currCurr][currBilling];
+    document.getElementById('starter-mo').textContent = '$' + d.s;
+    document.getElementById('field-mo').textContent   = '$' + d.f;
+    document.getElementById('pro-mo').textContent     = '$' + d.p;
+    document.getElementById('starter-yr').textContent = '$' + d.s;
+    document.getElementById('field-yr').textContent   = '$' + d.f;
+    document.getElementById('pro-yr').textContent     = '$' + d.p;
+  }
+
+  function setBilling(mode, btn) {
+    currBilling = mode;
+    document.querySelectorAll('.pricing-toggle__btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.body.classList.toggle('yr', mode === 'yr');
+    updatePrices();
+  }
+
+  function setCurr(c) {
+    currCurr = c;
+    document.getElementById('usd-btn').classList.toggle('active', c === 'USD');
+    document.getElementById('cad-btn').classList.toggle('active', c === 'CAD');
+    updatePrices();
+  }
+
+  /* ── Scroll animations ────────────────────────────────────────────────── */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.feature-card, .plan-card').forEach(el => {
+    el.style.transition = 'opacity .45s ease, transform .45s ease';
+    obs.observe(el);
+  });
+
+  /* ── Mobile nav ───────────────────────────────────────────────────────── */
+  document.addEventListener('click', e => {
+    if (!e.target.closest('.nav')) {
+      document.querySelector('.nav__mobile')?.classList.remove('open');
+    }
+  });
+</script>
 </body>
 </html>
