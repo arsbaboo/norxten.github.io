@@ -948,9 +948,9 @@
         <h3>Starter</h3>
         <p class="plan-desc">For small crews starting with digital cost control.</p>
         <div class="plan-price">
-          <span class="sym" id="s-sym">$</span><span class="amt" id="s-amt">36.99</span><span class="per">/mo</span>
+          <span class="sym" id="s-sym">$</span><span class="amt" id="s-amt">49.99</span><span class="per" id="s-per">/mo</span>
         </div>
-        <div class="plan-annual" id="s-ann">or $369.90/yr — 2 months free</div>
+        <div class="plan-annual" id="s-ann"> </div>
         <hr class="plan-divider">
         <ul class="plan-features">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 active employees</li>
@@ -969,9 +969,9 @@
         <h3>Field</h3>
         <p class="plan-desc">The primary tier for active job sites and growing teams.</p>
         <div class="plan-price">
-          <span class="sym" id="f-sym">$</span><span class="amt" id="f-amt">66.99</span><span class="per">/mo</span>
+          <span class="sym" id="f-sym">$</span><span class="amt" id="f-amt">89.99</span><span class="per" id="f-per">/mo</span>
         </div>
-        <div class="plan-annual" id="f-ann">or $669.90/yr — 2 months free</div>
+        <div class="plan-annual" id="f-ann"> </div>
         <hr class="plan-divider">
         <ul class="plan-features">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Up to 15 active employees</li>
@@ -991,9 +991,9 @@
         <h3>Pro</h3>
         <p class="plan-desc">For larger operations that need unlimited scale and advanced exports.</p>
         <div class="plan-price">
-          <span class="sym" id="p-sym">$</span><span class="amt" id="p-amt">139.99</span><span class="per">/mo</span>
+          <span class="sym" id="p-sym">$</span><span class="amt" id="p-amt">189.99</span><span class="per" id="p-per">/mo</span>
         </div>
-        <div class="plan-annual" id="p-ann">or $1,410/yr — 2 months free</div>
+        <div class="plan-annual" id="p-ann"> </div>
         <hr class="plan-divider">
         <ul class="plan-features">
           <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Unlimited active employees</li>
@@ -1185,7 +1185,8 @@ window.addEventListener('scroll', () => {
 }, { passive: true });
 
 // ── Pricing ───────────────────────────────────────────────────
-const PRICES = {
+// REPLACED BELOW
+const __OLD = null; /* was: const PRICES */
   USD: { starter:{mo:36.99,yr:369.90}, field:{mo:66.99,yr:669.90}, pro:{mo:139.99,yr:1399.90} },
   CAD: { starter:{mo:49.99,yr:499.90}, field:{mo:89.99,yr:899.90}, pro:{mo:189.99,yr:1899.90} }
 };
@@ -1221,13 +1222,7 @@ document.querySelectorAll('#billing-toggle button').forEach(btn => {
     updatePrices();
   });
 });
-document.querySelectorAll('#currency-toggle button').forEach(btn => {
-  btn.addEventListener('click', () => {
-    currency = btn.dataset.val;
-    document.querySelectorAll('#currency-toggle button').forEach(b => b.classList.toggle('active', b.dataset.val === currency));
-    updatePrices();
-  });
-});
+
 updatePrices();
 
 // ── Screenshot load: hide placeholder when image loads ────────
